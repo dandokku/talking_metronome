@@ -18,7 +18,9 @@ export default function BeatIndicator({
   return (
     <div className="relative flex items-center justify-center w-64 h-64 mx-auto my-12">
       {/* Background Glow */}
-      <div className="absolute inset-0 bg-purple-500/20 rounded-full blur-3xl" />
+      <div className={`absolute inset-0 rounded-full blur-3xl transition-colors duration-500 ${
+        isFirstBeat ? "bg-pink-500/30" : "bg-purple-500/20"
+      }`} />
 
       {/* Main Pulse Circle */}
       <AnimatePresence mode="popLayout">
@@ -26,7 +28,7 @@ export default function BeatIndicator({
           key={currentBeat}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{
-            scale: isPlaying ? [0.8, 1.1, 1] : 1,
+            scale: isPlaying ? (isFirstBeat ? 1.3 : 1.1) : 1,
             opacity: 1,
             backgroundColor: isFirstBeat ? "#ec4899" : "#8b5cf6", // Pink for beat 1, Purple others
           }}
@@ -34,7 +36,9 @@ export default function BeatIndicator({
             duration: 0.3,
             ease: "backOut",
           }}
-          className="relative z-10 w-48 h-48 rounded-full flex items-center justify-center shadow-2xl shadow-purple-500/50"
+          className={`relative z-10 w-48 h-48 rounded-full flex items-center justify-center shadow-2xl ${
+            isFirstBeat ? "shadow-pink-500/50" : "shadow-purple-500/50"
+          }`}
         >
           <span className="text-7xl font-black text-white drop-shadow-lg">
             {isPlaying ? currentBeat : "—"}
@@ -47,7 +51,7 @@ export default function BeatIndicator({
         <motion.div
           key={`ripple-${currentBeat}`}
           initial={{ scale: 1, opacity: 0.5 }}
-          animate={{ scale: 2, opacity: 0 }}
+          animate={{ scale: isFirstBeat ? 2.5 : 2, opacity: 0 }}
           transition={{ duration: 0.6 }}
           className={`absolute inset-0 rounded-full border-4 ${
             isFirstBeat ? "border-pink-400" : "border-purple-400"
