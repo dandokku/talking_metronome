@@ -4,14 +4,17 @@ const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
   register: true,
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  workboxOptions: {
+    disableDevLogs: true,
+  },
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Config options here
-  experimental: {
-    // turbopack: {},
-  },
 };
 
 export default withPWA(nextConfig);

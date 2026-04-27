@@ -26,6 +26,8 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+import PWARegistration from "@/components/PWARegistration";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased dark" suppressHydrationWarning>
       <body className={`${inter.className} min-h-full bg-slate-950 text-white selection:bg-purple-500/30`} suppressHydrationWarning>
+        <PWARegistration />
         {children}
       </body>
     </html>
