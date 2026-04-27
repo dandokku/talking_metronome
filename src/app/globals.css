@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Range Input Styling */
+input[type="range"] {
+  @apply appearance-none bg-white/10 h-2 rounded-full;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-6 h-6 bg-purple-500 rounded-full cursor-pointer shadow-lg shadow-purple-500/50 border-2 border-white transition-transform active:scale-125;
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply w-6 h-6 bg-purple-500 rounded-full cursor-pointer shadow-lg shadow-purple-500/50 border-2 border-white transition-transform active:scale-125;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
